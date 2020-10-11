@@ -1,7 +1,11 @@
 import React from 'react';
+import {JumbotronContainer, FooterContainer} from './containers';
 
 export default function App() {
   return (
-    <p>Hi</p>
+    <React.Fragment>
+      <JumbotronContainer/>
+      <FooterContainer/>
+    </React.Fragment>
   );
 }
