@@ -20,11 +20,11 @@ export const Column = styled.div`
 
 export const Row = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minimax(230px, lfr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 2fr));
   grid-gap: 15px;
 
   @media (max-width: 1000px) {
-    grid-template-columns: repeat(auto-fill, minmax(150px, lfr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 `;
 
@@ -42,7 +42,7 @@ export const Title = styled.p`
 `;
 
 export const Text = styled.p`
-  font-size:  13px;
+  font-size:  1px;
   color: #757575;
   margin-bottom: 40px;
 `;
