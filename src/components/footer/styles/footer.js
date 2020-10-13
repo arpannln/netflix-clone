@@ -20,7 +20,7 @@ export const Column = styled.div`
 
 export const Row = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 2fr));
+  grid-template-columns: repeat(auto-fill, minmax(210px, 2fr));
   grid-gap: 15px;
 
   @media (max-width: 1000px) {

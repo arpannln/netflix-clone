@@ -1,5 +1,5 @@
 import React from 'react';
-import {Footer} from '../components';
+import { Footer } from '../components';
 
 export default function FooterContainer() {
   return (
@@ -36,6 +36,7 @@ export default function FooterContainer() {
           <Footer.Link href="#">Legal Notices</Footer.Link>
         </Footer.Column>
       </Footer.Row>
+      <Footer.Text>Netflix</Footer.Text>
     </Footer>
   )
 }
