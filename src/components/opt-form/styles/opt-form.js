@@ -58,4 +58,7 @@ export const Button = styled.button`
 
 export const Text = styled.p`
   color: white;
+  font-size: 19px;
+  text-align: center;
+  flex-basis: 100%;
 `;
