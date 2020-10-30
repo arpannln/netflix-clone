@@ -38,10 +38,10 @@ export default function BrowseContainer() {
               </Header.Group>
               <Header.Group>
                 <Header.Profile>
-                  <Header.Picture src={user.photoURL}/>
+                  <Header.Picture src={`/images/users/${user.photoURL}.png`}/>
                   <Header.Dropdown>
                     <Header.Group>
-                      <Header.Picture src={user.photoURL}/>
+                      <Header.Picture src={`/images/users/${user.photoURL}.png`}/>
                       <Header.TextLink>{user.displayName}</Header.TextLink>
                     </Header.Group>
                   </Header.Dropdown>

@@ -41,14 +41,39 @@ export const Logo = styled.img`
   }
 `;
 
-export const Picture = styled.div`
+export const Picture = styled.button`
+  background: url(${({ src }) => src});
+  background-size: contain;
+  border: 10px;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+`;
+
+export const Dropdown = styled.div`
+  display: none;
+  background-color: black;
+  position: absolute;
+  padding: 10px;
+  width: 150px;
+  top: 32px;
+  right: 0px;
+`;
+
+export const Profile = styled.div`
   display: flex;
   align-items: center;
   margin-left: 20px;
   position: relative;
 
-  &:hover {
+  button {
     cursor: pointer;
+  }
+
+  &:hover > ${Dropdown} {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
