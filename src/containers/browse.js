@@ -14,7 +14,7 @@ export default function BrowseContainer({ slides }) {
   const { firebase } = useContext(FirebaseContext);
   const user = firebase.auth().currentUser || {};
   const { displayName } = profile;
-
+  console.log(slides);
   useEffect(() => {
     // if (profile.displayName && loading) {
     //   setLoading(false);
@@ -83,7 +83,32 @@ export default function BrowseContainer({ slides }) {
           </Header>
 
           <Card.Group>
-
+            {
+              Object.keys(slideRows).map((genre) => (
+                <Card key={`${category}-${genre.toLowerCase()}`}>
+                  <Card.Title>{genre}</Card.Title>
+                  <Card.Entities>
+                    {slideRows[genre].map((item = {}) => (
+                      <Card.Item key={item.docId} item={item}>
+                        <Card.Image src={`/images/${category}/${genre}/${item.slug}/small.jpg`}/>
+                        <Card.Meta>
+                          <Card.SubTitle>{item.title}</Card.SubTitle>
+                          <Card.Text>{item.description}</Card.Text>
+                        </Card.Meta>
+                      </Card.Item>
+                    ))}
+                  </Card.Entities>
+                  <Card.Feature/>
+                  {/*<Card.Feature category={category}>
+                      <Player>
+                        <Player.Button/>
+                        <Player.Video src="/videos/bunny.mp4"/>
+                      </Player>
+                  </Card.Feature>
+                  */}
+                </Card>
+              ))
+            }
           </Card.Group>
         </>
       );

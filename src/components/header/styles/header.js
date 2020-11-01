@@ -88,7 +88,7 @@ export const Link = styled(Text)`
   margin-right: 30px;
   font-weight: ${({ active }) => (active === true ? '700' : 'normal')};
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: all 0.25s ease;
 
   &:hover {
     color: darkgray;
