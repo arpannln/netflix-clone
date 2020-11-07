@@ -1,9 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
+import Fuse from 'fuse.js';
 import SelectProfileContainer from './profiles';
+import FooterContainer from './footer';
 import { FirebaseContext } from '../context/firebase';
-import { Card, Loading, Header } from '../components';
+import { Card, Loading, Header, Player } from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
+import { selectionFilterByAttribute } from '../utils';
 
 export default function BrowseContainer({ slides }) {
   const [profile, setProfile] = useState({});
@@ -14,7 +17,7 @@ export default function BrowseContainer({ slides }) {
   const { firebase } = useContext(FirebaseContext);
   const user = firebase.auth().currentUser || {};
   const { displayName } = profile;
-  console.log(slides);
+
   useEffect(() => {
     // if (profile.displayName && loading) {
     //   setLoading(false);
@@ -28,6 +31,17 @@ export default function BrowseContainer({ slides }) {
   useEffect(() => {
     setSlideRows(slides[category]);
   }, [slides, category]);
+
+  useEffect(() => {
+    const fuse = new Fuse(Object.values(slideRows).flat(), { keys: ['description', 'title', 'genre']});
+    const results = fuse.search(searchTerm).map(({ item }) => item);
+
+    if (searchTerm.length > 3 && results.length > 0) {
+      setSlideRows(selectionFilterByAttribute(results, 'genre'));
+    } else {
+      setSlideRows(slides[category]);
+    }
+  }, [searchTerm])
 
   if (displayName) {
     if (loading) {
@@ -98,18 +112,17 @@ export default function BrowseContainer({ slides }) {
                       </Card.Item>
                     ))}
                   </Card.Entities>
-                  <Card.Feature/>
-                  {/*<Card.Feature category={category}>
-                      <Player>
-                        <Player.Button/>
-                        <Player.Video src="/videos/bunny.mp4"/>
-                      </Player>
+                  <Card.Feature category={category}>
+                    <Player>
+                      <Player.Button/>
+                      <Player.Video src="/videos/bunny.mp4"/>
+                    </Player>
                   </Card.Feature>
-                  */}
                 </Card>
               ))
             }
           </Card.Group>
+          <FooterContainer/>
         </>
       );
     }

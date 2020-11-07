@@ -53,7 +53,7 @@ Card.Meta = function CardMeta({ children, ...restProps }) {
 Card.Feature = function CardFeature({ children, category, ...restProps }) {
   const { showFeature, itemFeature = {}, setShowFeature } = useContext(FeatureContext);
   const { genre, slug, description, maturity, title } = itemFeature;
-
+  console.log(category, genre, slug);
   return showFeature ? (
     <Feature
       src={`/images/${category}/${genre}/${slug}/large.jpg`}
@@ -64,15 +64,13 @@ Card.Feature = function CardFeature({ children, category, ...restProps }) {
         <FeatureClose onClick={() => setShowFeature(false)}>
           <img src="/images/icons/close.png" alt="Close"/>
         </FeatureClose>
+        <Group margin="30px 0" flexDirection="row" alignItems="center">
+          <Maturity rating={maturity}>
+            {maturity < 12 ? 'PG' : maturity}
+          </Maturity>
+        </Group>
+        {children}
       </Content>
-      <Group margin="30px 0" flexDirection="row" alignItems="center">
-        <Maturity rating={maturity}>
-          {maturity < 12 ? 'PG' : maturity}
-        </Maturity>
-        <FeatureText fontWeight="bold">
-          {genre}
-        </FeatureText>
-      </Group>
     </Feature>
   ) : null;
 
@@ -86,8 +84,8 @@ Card.Item = function CardItem({ item, children, ...restProps }) {
       <Item
         onClick={() => {
           setItemFeature(item);
-            setShowFeature(true);
-          }}
+          setShowFeature(true);
+        }}
         {...restProps}
       >
         {children}
